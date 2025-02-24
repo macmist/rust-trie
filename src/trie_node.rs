@@ -16,7 +16,7 @@ impl TrieNode {
         for a in self.children.values() {
             sum += a.len();
         }
-        return sum;
+        sum
     }
 }
 
@@ -27,7 +27,7 @@ mod tests {
     #[test]
     fn it_should_create_a_new_node() {
         let result = TrieNode::default();
-        assert_eq!(result.is_end_of_word, false);
+        assert!(!result.is_end_of_word);
         assert_eq!(result.children.len(), 0);
     }
 

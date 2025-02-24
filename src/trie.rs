@@ -95,20 +95,20 @@ mod tests {
     fn it_should_contain_word() {
         let mut trie = Trie::new();
         trie.insert("hello");
-        assert_eq!(trie.contains("hello"), true);
+        assert!(trie.contains("hello"));
     }
 
     #[test]
     fn it_should_not_contain_word() {
         let mut trie = Trie::new();
         trie.insert("hello");
-        assert_eq!(trie.contains("world"), false);
+        assert!(!trie.contains("world"));
     }
 
     #[test]
     fn it_should_not_contain_prefix() {
         let mut trie = Trie::new();
         trie.insert("hello");
-        assert_eq!(trie.contains("hel"), false);
+        assert!(!trie.contains("hel"));
     }
 }
