@@ -29,7 +29,7 @@ impl Trie {
      * # Examples
      * ```
      * use easy_trie::trie::Trie;
-     * 
+     *
      * let mut trie = Trie::new();
      * assert_eq!(trie.len(), 0);
      * ```
@@ -46,7 +46,7 @@ impl Trie {
      * # Examples
      * ```
      * use easy_trie::trie::Trie;
-     * 
+     *
      * let mut trie = Trie::new();
      * trie.insert("hello");
      * assert_eq!(trie.len(), 5);
@@ -68,7 +68,7 @@ impl Trie {
      * # Examples
      * ```
      * use easy_trie::trie::Trie;
-     * 
+     *
      * let mut trie = Trie::new();
      * trie.insert("hello");
      * assert_eq!(trie.len(), 5);
@@ -84,7 +84,7 @@ impl Trie {
      * # Examples
      * ```
      * use easy_trie::trie::Trie;
-     * 
+     *
      * let mut trie = Trie::new();
      * trie.insert("hello");
      * assert!(trie.contains("hello"));
