@@ -1,5 +1,20 @@
 use crate::trie_node::TrieNode;
 
+/// Trie stucture
+///
+/// The Trie struct is the main structure of the crate.
+/// It contains a root node and has methods to insert a new word and check if a word is in the trie.
+///
+/// # Examples
+/// ```
+/// use easy_trie::Trie;
+///
+/// let mut trie = Trie::new();
+/// trie.insert("hello");
+/// assert_eq!(trie.len(), 5);
+/// assert!(trie.contains("hello"));
+/// assert!(!trie.contains("world"));
+/// ```
 #[derive(Default, Debug)]
 pub struct Trie {
     root: TrieNode,
