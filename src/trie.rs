@@ -7,7 +7,7 @@ use crate::trie_node::TrieNode;
 ///
 /// # Examples
 /// ```
-/// use easy_trie::Trie;
+/// use easy_trie::trie::Trie;
 ///
 /// let mut trie = Trie::new();
 /// trie.insert("hello");
@@ -51,7 +51,7 @@ impl Trie {
     /**
      * Checks if the trie contains a word.
      */
-    fn contains(&self, word: &str) -> bool {
+    pub fn contains(&self, word: &str) -> bool {
         let mut current_node = &self.root;
 
         for c in word.chars() {
