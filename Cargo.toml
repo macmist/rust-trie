@@ -1,9 +1,9 @@
 [package]
 name = "easy-trie"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Quentin Musy"]
 description = "A simple trie implementation in Rust"
 license = "Apache-2.0"
-
-
+readme = "README.md"
+repository = "https://github.com/macmist/rust-trie"
