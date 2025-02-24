@@ -45,8 +45,7 @@ impl Trie {
                 None => return false,
             }
         }
-        current_node.is_end_of_word 
-          
+        current_node.is_end_of_word
     }
 }
 
