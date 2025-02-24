@@ -23,6 +23,15 @@ pub struct Trie {
 impl Trie {
     /**
      * Initializes a new Trie.
+     *
+     * It will be an empty trie with default values
+     *
+     * # Examples
+     * ```
+     * use easy_trie::trie::Trie;
+     * let mut trie = Trie::new();
+     * assert_eq!(trie.len(), 0);
+     * ```
      */
     pub fn new() -> Self {
         Trie {
@@ -32,6 +41,13 @@ impl Trie {
 
     /**
      * Inserts a new word into the Trie.
+     *
+     * # Examples
+     * ```
+     * let mut trie = Trie::new();
+     * trie.insert("hello");
+     * assert_eq!(trie.len(), 5);
+     * ```
      */
     pub fn insert(&mut self, word: &str) {
         let mut current_node = &mut self.root;
@@ -43,6 +59,15 @@ impl Trie {
 
     /**
      * Calculates the length of the trie.
+     *
+     * Defined as the sum of the length of all children nodes and of the root node.
+     *
+     * # Examples
+     * ```
+     * let mut trie = Trie::new();
+     * trie.insert("hello");
+     * assert_eq!(trie.len(), 5);
+     * ```
      */
     pub fn len(&self) -> usize {
         self.root.len()
@@ -50,6 +75,14 @@ impl Trie {
 
     /**
      * Checks if the trie contains a word.
+     *
+     * # Examples
+     * ```
+     * let mut trie = Trie::new();
+     * trie.insert("hello");
+     * assert!(trie.contains("hello"));
+     * assert!(!trie.contains("world"));
+     * ```
      */
     pub fn contains(&self, word: &str) -> bool {
         let mut current_node = &self.root;
