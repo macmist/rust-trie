@@ -1,6 +1,5 @@
 use crate::trie_node::TrieNode;
 
-
 #[derive(Default, Debug)]
 pub struct Trie {
     root: TrieNode,
@@ -12,7 +11,7 @@ impl Trie {
      */
     pub fn new() -> Self {
         Trie {
-            root: TrieNode::default()
+            root: TrieNode::default(),
         }
     }
 
@@ -34,7 +33,7 @@ impl Trie {
         self.root.len()
     }
 
-    /** 
+    /**
      * Checks if the trie contains a word.
      */
     fn contains(&self, word: &str) -> bool {
