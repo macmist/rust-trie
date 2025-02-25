@@ -11,7 +11,9 @@ Essentially, I wanted to understand how to create and publish a crate so I was l
 
 `cargo add easy-trie`
 
-## Usage
+## Examples
+
+### Simple case
 
 ```rust
 use easy_trie::trie::Trie;
@@ -21,4 +23,17 @@ trie.insert("hello");
 assert_eq!(trie.len(), 5);
 assert!(trie.contains("hello"));
 assert!(!trie.contains("world"));
+```
+
+### Suggestions
+
+```rust
+use easy_trie::trie::Trie;
+
+let mut trie = Trie::new();
+trie.insert("hello");
+trie.insert("help");
+let suggestions = trie.suggest("h");
+assert!(suggestions.contains(&"hello".to_string()));
+assert!(suggestions.contains(&"help".to_string()));
 ```

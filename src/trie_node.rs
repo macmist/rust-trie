@@ -9,14 +9,34 @@ pub struct TrieNode {
 impl TrieNode {
     /**
      * Calculates the length of the current node.
+     *
      * Defined as the sum of the length of all children nodes and of the current node.
      */
-    pub fn len(&self) -> usize {
+    pub(crate) fn len(&self) -> usize {
         let mut sum = self.children.len();
         for a in self.children.values() {
             sum += a.len();
         }
         sum
+    }
+
+    /**
+     * Get all possible words for a given node.
+     */
+    pub(crate) fn get_suggestions(&self, current: &str) -> Vec<String> {
+        let mut words: Vec<String> = Vec::new();
+        if self.is_end_of_word {
+            words.push(current.to_string());
+            eprintln!("Inserting {current}")
+        }
+        for (c, node) in self.children.iter() {
+            words.append(
+                node.get_suggestions(format!("{current}{c}").as_str())
+                    .as_mut(),
+            );
+        }
+        eprintln!("returning {words:#?}");
+        words
     }
 }
 
@@ -39,5 +59,42 @@ mod tests {
         child.is_end_of_word = true;
         node.children.insert('a', child);
         assert_eq!(node.len(), 1);
+    }
+
+    #[test]
+    fn it_should_get_suggestions() {
+        let mut node = TrieNode::default();
+        let mut child = TrieNode::default();
+        child.is_end_of_word = true;
+        node.children.insert('a', child);
+        let words = node.get_suggestions("");
+        assert_eq!(words, vec!["a"]);
+    }
+
+    #[test]
+    fn it_should_get_suggestions_independantly_from_prefix() {
+        let mut node = TrieNode::default();
+        let mut child = TrieNode::default();
+        child.is_end_of_word = true;
+        node.children.insert('a', child);
+        let prefixes = ["some", "prefix"];
+        for prefix in prefixes.iter() {
+            let words = node.get_suggestions(prefix);
+            assert_eq!(words, vec![format!("{prefix}a")]);
+        }
+    }
+
+    #[test]
+    fn it_should_get_suggestions_with_multiple_children() {
+        let mut node = TrieNode::default();
+        let mut child = TrieNode::default();
+        child.is_end_of_word = true;
+        node.children.insert('a', child);
+        let mut child = TrieNode::default();
+        child.is_end_of_word = true;
+        node.children.insert('b', child);
+        let words = node.get_suggestions("");
+        assert!(words.contains(&"a".to_string()));
+        assert!(words.contains(&"b".to_string()));
     }
 }

@@ -102,6 +102,32 @@ impl Trie {
         }
         current_node.is_end_of_word
     }
+
+    /**
+     * Get all stored words with the given prefix.
+     *
+     * # Examples
+     * ```
+     * use easy_trie::trie::Trie;
+     *
+     * let mut trie = Trie::new();
+     * trie.insert("hello");
+     * trie.insert("help");
+     * let suggestions = trie.suggest("h");
+     * assert!(suggestions.contains(&"hello".to_string()));
+     * assert!(suggestions.contains(&"help".to_string()));
+     * ```
+     */
+    pub fn suggest(&self, prefix: &str) -> Vec<String> {
+        let mut current_node = &self.root;
+        for c in prefix.chars() {
+            if !current_node.children.contains_key(&c) {
+                return vec![];
+            }
+            current_node = current_node.children.get(&c).unwrap();
+        }
+        current_node.get_suggestions(prefix)
+    }
 }
 
 #[cfg(test)]
@@ -165,5 +191,15 @@ mod tests {
         let mut trie = Trie::new();
         trie.insert("hello");
         assert!(!trie.contains("hel"));
+    }
+
+    #[test]
+    fn it_should_get_suggestions() {
+        let mut trie = Trie::new();
+        trie.insert("hello");
+        trie.insert("help");
+        let suggestions = trie.suggest("h");
+        assert!(suggestions.contains(&"hello".to_string()));
+        assert!(suggestions.contains(&"help".to_string()));
     }
 }
