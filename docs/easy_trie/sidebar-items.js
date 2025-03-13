@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["trie","trie_node"]};
